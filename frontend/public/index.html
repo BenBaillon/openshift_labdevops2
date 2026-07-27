@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenShift Coffee Shop</title>
+  /style.css
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Formation OpenShift</p>
+        <h1>OpenShift Coffee Shop</h1>
+        <p class="subtitle">
+          Une application pédagogique pour suivre le chemin du code Git jusqu'à l'application en production.
+        </p>
+      </div>
+
+      <div class="badge">
+        <span>Frontend</span>
+        <strong id="frontend-version">...</strong>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Configuration</h2>
+        <dl class="info-list">
+          <div>
+            <dt>Environnement</dt>
+            <dd id="environment">...</dd>
+          </div>
+          <div>
+            <dt>Backend URL</dt>
+            <dd id="backend-url">...</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="card">
+        <h2>Statut backend</h2>
+        <div id="backend-status" class="status status-unknown">
+          Vérification en cours...
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Version backend</h2>
+        <dl class="info-list">
+          <div>
+            <dt>Nom</dt>
+            <dd id="backend-name">...</dd>
+          </div>
+          <div>
+            <dt>Version</dt>
+            <dd id="backend-version">...</dd>
+          </div>
+          <div>
+            <dt>Message</dt>
+            <dd id="backend-message">...</dd>
+          </div>
+        </dl>
+      </article>
+    </section>
+
+    <section class="card products-section">
+      <div class="section-header">
+        <h2>Produits</h2>
+        <button id="refresh-button">Rafraîchir</button>
+      </div>
+
+      <div id="error-box" class="error hidden"></div>
+
+      <div id="products" class="products">
+        Chargement des produits...
+      </div>
+    </section>
+  </main>
+
+  /app.jsscript>
+</body>
+</html>
