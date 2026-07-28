@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coffee-shop-frontend-config
+  labels:
+    app: coffee-shop
+    component: frontend
+data:
+  FRONTEND_VERSION: "v1"
+  APP_ENV: "training"
+  BACKEND_URL: "http://coffee-shop-backend-bbaillon-dev.apps.rm2.thpm.p1.openshiftapps.com"

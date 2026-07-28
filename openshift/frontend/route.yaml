@@ -1,0 +1,13 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: coffee-shop-frontend
+  labels:
+    app: coffee-shop
+    component: frontend
+spec:
+  to:
+    kind: Service
+    name: coffee-shop-frontend
+  port:
+    targetPort: http

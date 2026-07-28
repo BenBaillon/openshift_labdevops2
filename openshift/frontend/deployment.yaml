@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee-shop-frontend
+  labels:
+    app: coffee-shop
+    component: frontend
+  annotations:
+    image.openshift.io/triggers: >-
+      [
+        {
+          "from": {
+            "kind": "ImageStreamTag",
+            "name": "coffee-shop-frontend:latest"
+          },
+          "fieldPath": "spec.template.spec.containers[?(@.name==\"coffee-shop-frontend\")].image"
+        }
+      ]
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coffee-shop
+      component: frontend
+  template:
+    metadata:
+      labels:
+        app: coffee-shop
+        component: frontend
+    spec:
+      containers:
+        - name: coffee-shop-frontend
+          image: coffee-shop-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: coffee-shop-frontend-config
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            timeoutSeconds: 2
+            failureThreshold: 3
