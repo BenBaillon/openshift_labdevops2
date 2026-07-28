@@ -345,8 +345,6 @@ curl $BACKEND_ROUTE/api/version
 
 ## 15. Ce que l'on doit observer
 
-Les participants doivent observer que :
-
 1. La commande `oc set env` modifie le Deployment.
 2. La modification du Deployment déclenche un rollout.
 3. Un nouveau Pod est créé.
