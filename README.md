@@ -96,7 +96,7 @@ openshift_labdevops2/
 │
 ├── scenarios/
 │
-└── docs/
+└── TPs/
 
 ```
 
