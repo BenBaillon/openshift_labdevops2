@@ -1,0 +1,24 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: coffee-shop-backend
+  labels:
+    app: coffee-shop
+    component: backend
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com/BenBaillon/openshift_labdevops2.git
+      ref: main
+    contextDir: backend
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+  output:
+    to:
+      kind: ImageStreamTag
+      name: coffee-shop-backend:latest
+  triggers:
+    - type: ConfigChange

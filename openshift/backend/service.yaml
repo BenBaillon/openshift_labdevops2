@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: coffee-shop-backend
+  labels:
+    app: coffee-shop
+    component: backend
+spec:
+  type: ClusterIP
+  selector:
+    app: coffee-shop
+    component: backend
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
