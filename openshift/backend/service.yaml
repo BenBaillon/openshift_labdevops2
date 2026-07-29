@@ -5,6 +5,9 @@ metadata:
   labels:
     app: coffee-shop
     component: backend
+    app.kubernetes.io/name: coffee-shop-backend
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/part-of: coffee-shop
 spec:
   type: ClusterIP
   selector:
