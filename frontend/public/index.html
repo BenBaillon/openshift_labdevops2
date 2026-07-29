@@ -76,6 +76,52 @@
         Chargement des produits...
       </div>
     </section>
+
+    <section class="card orders-section">
+      <div class="section-header">
+        <h2>Commandes</h2>
+        <button id="refresh-orders-button">Rafraîchir les commandes</button>
+      </div>
+
+      <p class="section-description">
+        Cette section permet d'illustrer le stockage persistant avec un PVC OpenShift.
+      </p>
+
+      <form id="order-form" class="order-form">
+        <div>
+          <label for="order-product">Produit</label>
+          <select id="order-product">
+            <option value="Espresso">Espresso</option>
+            <option value="Latte">Latte</option>
+            <option value="Cappuccino">Cappuccino</option>
+            <option value="Mocha">Mocha</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="order-quantity">Quantité</label>
+          <input id="order-quantity" type="number" min="1" value="1" />
+        </div>
+
+        <button type="submit">Créer une commande</button>
+      </form>
+
+      <div class="orders-actions">
+        <button id="clear-orders-button" class="danger-button">
+          Supprimer les commandes
+        </button>
+      </div>
+
+      <div class="storage-info">
+        Fichier de stockage :
+        <strong id="orders-storage-path">...</strong>
+      </div>
+
+      <div id="orders" class="orders">
+        Chargement des commandes...
+      </div>
+    </section>
+
   </main>
 
   <script src="app.js"></script>

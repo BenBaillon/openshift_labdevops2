@@ -92,6 +92,102 @@ async function loadProducts() {
   }
 }
 
+async function loadOrders() {
+  const ordersElement = document.getElementById("orders");
+  const storagePathElement = document.getElementById("orders-storage-path");
+
+  try {
+    ordersElement.textContent = "Chargement des commandes...";
+
+    const response = await fetch(`${appConfig.backendUrl}/api/orders`);
+
+    if (!response.ok) {
+      throw new Error(`Impossible de récupérer les commandes. HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    storagePathElement.textContent = data.storagePath || "Non renseigné";
+    ordersElement.innerHTML = "";
+
+    if (!data.items || data.items.length === 0) {
+      ordersElement.innerHTML = `
+        <div class="empty-state">
+          Aucune commande enregistrée.
+        </div>
+      `;
+      return;
+    }
+
+    data.items.forEach((order) => {
+      const item = document.createElement("div");
+      item.className = "order-card";
+
+      item.innerHTML = `
+        <div>
+          <h3>${order.product}</h3>
+          <p>Commande ${order.id}</p>
+          <p>Créée le ${formatDate(order.createdAt)}</p>
+        </div>
+        <strong>x${order.quantity}</strong>
+      `;
+
+      ordersElement.appendChild(item);
+    });
+  } catch (error) {
+    ordersElement.textContent = "Impossible de charger les commandes";
+    document.getElementById("orders-storage-path").textContent = "Erreur";
+    showError(error.message);
+  }
+}
+
+async function createOrder(event) {
+  event.preventDefault();
+  clearError();
+
+  const product = document.getElementById("order-product").value;
+  const quantity = Number(document.getElementById("order-quantity").value || 1);
+
+  try {
+    const response = await fetch(`${appConfig.backendUrl}/api/orders`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        product,
+        quantity
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Impossible de créer la commande. HTTP ${response.status}`);
+    }
+
+    await loadOrders();
+  } catch (error) {
+    showError(error.message);
+  }
+}
+
+async function clearOrders() {
+  clearError();
+
+  try {
+    const response = await fetch(`${appConfig.backendUrl}/api/orders`, {
+      method: "DELETE"
+    });
+
+    if (!response.ok) {
+      throw new Error(`Impossible de supprimer les commandes. HTTP ${response.status}`);
+    }
+
+    await loadOrders();
+  } catch (error) {
+    showError(error.message);
+  }
+}
+
 function showError(message) {
   const errorBox = document.getElementById("error-box");
   errorBox.textContent = message;
@@ -104,15 +200,27 @@ function clearError() {
   errorBox.classList.add("hidden");
 }
 
+function formatDate(value) {
+  if (!value) {
+    return "date inconnue";
+  }
+
+  return new Date(value).toLocaleString("fr-FR");
+}
+
 async function refresh() {
   clearError();
 
   await checkBackendHealth();
   await loadBackendVersion();
   await loadProducts();
+  await loadOrders();
 }
 
 document.getElementById("refresh-button").addEventListener("click", refresh);
+document.getElementById("refresh-orders-button").addEventListener("click", loadOrders);
+document.getElementById("clear-orders-button").addEventListener("click", clearOrders);
+document.getElementById("order-form").addEventListener("submit", createOrder);
 
 async function start() {
   try {

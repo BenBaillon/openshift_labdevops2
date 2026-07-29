@@ -10,7 +10,8 @@ router.get("/admin/config", (req, res) => {
     appEnvironment: config.appEnvironment,
     appMessage: config.appMessage,
     failMode: config.failMode,
-    secretConfigured: config.secretApiKey !== null
+    secretConfigured: config.secretApiKey !== null,
+    ordersFilePath: config.ordersFilePath
   });
 });
 

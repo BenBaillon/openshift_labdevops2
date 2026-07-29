@@ -8,6 +8,7 @@ const healthRoutes = require("./routes/health");
 const productsRoutes = require("./routes/products");
 const versionRoutes = require("./routes/version");
 const adminRoutes = require("./routes/admin");
+const ordersRoutes = require("./routes/orders");
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use(healthRoutes);
 app.use(productsRoutes);
 app.use(versionRoutes);
 app.use(adminRoutes);
+app.use(ordersRoutes);
 
 app.use((req, res) => {
   res.status(404).json({

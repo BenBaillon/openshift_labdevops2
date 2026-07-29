@@ -212,3 +212,104 @@ button:hover {
     grid-template-columns: 1fr;
   }
 }
+
+.orders-section {
+  margin-top: 18px;
+}
+
+.section-description {
+  color: var(--muted);
+  margin-top: -6px;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+.order-form {
+  display: grid;
+  grid-template-columns: 1fr 160px auto;
+  gap: 14px;
+  align-items: end;
+  margin-bottom: 18px;
+}
+
+.order-form label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.order-form select,
+.order-form input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 15px;
+  background: white;
+  color: var(--text);
+}
+
+.orders-actions {
+  margin-bottom: 16px;
+}
+
+.danger-button {
+  background: var(--error);
+}
+
+.storage-info {
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #eff6ff;
+  color: #1e3a8a;
+  font-size: 14px;
+  word-break: break-word;
+}
+
+.orders {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.order-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #f9fafb;
+}
+
+.order-card h3 {
+  margin: 0;
+}
+
+.order-card p {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  padding: 18px;
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+  color: var(--muted);
+  background: #f9fafb;
+  text-align: center;
+}
+
+@media (max-width: 850px) {
+  .order-form {
+    grid-template-columns: 1fr;
+  }
+
+  .orders {
+    grid-template-columns: 1fr;
+  }
+}

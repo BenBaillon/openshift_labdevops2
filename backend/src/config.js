@@ -7,7 +7,9 @@ const config = {
 
   failMode: process.env.FAIL_MODE === "true",
 
-  secretApiKey: process.env.SECRET_API_KEY || null
+  secretApiKey: process.env.SECRET_API_KEY || null,
+
+  ordersFilePath: process.env.ORDERS_FILE_PATH || "/tmp/orders.json"
 };
 
 module.exports = config;
