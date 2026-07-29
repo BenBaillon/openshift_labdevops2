@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coffee-shop-backend-config
+  labels:
+    app: coffee-shop
+    component: backend
+    app.kubernetes.io/name: coffee-shop-backend
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/part-of: coffee-shop
+data:
+  APP_NAME: "Coffee Shop Backend"
+  APP_VERSION: "v1"
+  APP_ENV: "training"
+  APP_MESSAGE: "Bonjour depuis une ConfigMap OpenShift"
+  FAIL_MODE: "false"
+  ORDERS_FILE_PATH: "/data/orders.json"

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: coffee-shop-backend-data
+  labels:
+    app: coffee-shop
+    component: backend
+    app.kubernetes.io/name: coffee-shop-backend-data
+    app.kubernetes.io/component: storage
+    app.kubernetes.io/part-of: coffee-shop
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
