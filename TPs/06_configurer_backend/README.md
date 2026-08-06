@@ -340,11 +340,11 @@ openshift/backend/deployment.yaml
 Repérer la section :
 
 ```yaml
-envFrom:
-  - configMapRef:
-      name: coffee-shop-backend-config
-  - secretRef:
-      name: coffee-shop-backend-secret
+# envFrom:
+#   - configMapRef:
+#       name: coffee-shop-backend-config
+#   - secretRef:
+#       name: coffee-shop-backend-secret
 ```
 
 Cette section indique que le Pod backend reçoit ses variables d'environnement depuis :
@@ -362,20 +362,14 @@ Le Deployment décrit comment la configuration est injectée dans le Pod.
 
 ---
 
-### Étape 6 - Redémarrer le Deployment backend
+### Étape 6 - Redéployer le Deployment backend
 
-Si le Deployment backend a été créé avant la ConfigMap et le Secret, il peut être nécessaire de le redémarrer pour s'assurer que le Pod lit bien la configuration.
+Décommenter la section présentée ci-dessus concernant les variables d'environnements.
 
 Lancer :
 
 ```bash
-oc rollout restart deployment/coffee-shop-backend
-```
-
-Suivre le rollout :
-
-```bash
-oc rollout status deployment/coffee-shop-backend
+oc apply -f openshift/backend/deployment.yaml
 ```
 
 Observer le Pod :

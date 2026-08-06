@@ -38,11 +38,11 @@ spec:
           ports:
             - containerPort: 8080
               protocol: TCP
-          envFrom:
-            - configMapRef:
-                name: coffee-shop-backend-config
-            - secretRef:
-                name: coffee-shop-backend-secret
+          # envFrom:
+          #   - configMapRef:
+          #       name: coffee-shop-backend-config
+          #   - secretRef:
+          #       name: coffee-shop-backend-secret
           readinessProbe:
             httpGet:
               path: /ready
